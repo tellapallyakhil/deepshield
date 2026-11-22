@@ -8,14 +8,14 @@
 [![Docker](https://img.shields.io/badge/Deployment-Docker%20Compose-2496ED.svg?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **deepSheild** is a production-grade enterprise **Security Operations Center (SOC) investigation platform** engineered to detect, correlate, and triage multi-vector cyber threats in real-time. It unifies **Computer Vision, Audio Biometrics, NLP, Anomaly Detection, and Tabular Machine Learning** under a single **Bayesian Risk Fusion Engine** backed by legally admissible digital forensics.
+**deepSheild (HTCS)** is an enterprise Security Operations Center (SOC) investigation platform engineered to detect, correlate, and triage multi-vector cyber attacks in real-time. By bridging deep learning and digital forensics, the platform unifies **Computer Vision, Audio Biometrics, NLP, Anomaly Detection, and Lexical Intelligence** under an adaptive **Bayesian Threat Fusion Engine**.
 
 ---
 
 ## 📑 Table of Contents
-- [Target Domains & Engineering Competencies](#-target-domains--engineering-competencies)
+- [Executive Overview](#-executive-overview)
 - [System Architecture](#-system-architecture)
-- [Multi-Modal AI Threat Engines](#-multi-modal-ai-threat-engines)
+- [Multi-Modal Threat Detection Engines](#-multi-modal-threat-detection-engines)
 - [Digital Forensics & Chain of Custody](#-digital-forensics--chain-of-custody)
 - [Tech Stack](#-tech-stack)
 - [Quick Start Guide](#-quick-start-guide)
@@ -26,16 +26,15 @@
 
 ---
 
-## 🎯 Target Domains & Engineering Competencies
+## 💡 Executive Overview
 
-This project demonstrates cross-disciplinary expertise spanning 4 primary engineering domains:
+Modern cyber threat actors rarely operate in single silos—sophisticated phishing campaigns combine deepfake executive video calls, synthetic voice clones, credential harvesting domains, and network infiltration attempts. 
 
-| Domain | Industry Role Alignment | Key Competencies Demonstrated |
-|---|---|---|
-| **🤖 Applied AI & Deep Learning** | ML Engineer / AI Researcher | Multi-modal architectures, Vision Transformers (ViT), fine-tuning EfficientNet, signal processing (librosa), DistilBERT NLP, unsupervised autoencoders, Random Forests, SHAP interpretability. |
-| **🔒 Cybersecurity & SOC Operations** | Security Analyst / Threat Intel / SecOps | Threat correlation, phishing pretext analysis, malicious lexical heuristics, network flow anomaly detection (CIC-IDS2017), incident triage. |
-| **⚖️ Digital Forensics & Incident Response (DFIR)** | Digital Forensics Engineer | Cryptographic evidence hashing (SHA-256), immutable audit logs, tamper-evident chains of custody, legal admissibility standards. |
-| **💻 Full-Stack & Distributed Systems** | Full-Stack / Backend Engineer | Asynchronous worker architecture (Celery + Redis), FastAPI REST APIs, SQLAlchemy 2.0 ORM, PostgreSQL, Next.js 16 (React 19, TypeScript, Tailwind v4), Docker multi-service containerization. |
+Existing SOC tooling treats these events as disconnected alerts. **deepSheild** solves this by providing:
+1. **Multi-Modal Detection**: Ingests video, audio, text, URLs, and network flow telemetry within a single unified analyst workbench.
+2. **Explainable AI (XAI)**: Provides transparent signals rather than black-box labels (SHAP word impacts, Mel-spectrogram acoustic heatmaps, and facial bounding-box tracking).
+3. **Probabilistic Risk Fusion**: Synthesizes cross-vector signals into a unified Bayesian threat score ($0-100\%$) with automated severity tiering.
+4. **Legally Admissible Forensics**: Built-in SHA-256 evidence hashing and immutable audit logging for incident response compliance.
 
 ---
 
@@ -72,64 +71,39 @@ This project demonstrates cross-disciplinary expertise spanning 4 primary engine
 
 ---
 
-## 🧠 Multi-Modal AI Threat Engines
+## 🧠 Multi-Modal Threat Detection Engines
 
-deepSheild implements 5 specialized AI detectors orchestrated by an enterprise Risk Fusion Engine:
-
-### 1. 🎭 Deepfake Video Authenticity Engine
-- **Backbone**: Google Vision Transformer (`ViT-B/16`) + Custom Fine-Tuned `EfficientNet-B4` Ensemble.
-- **Preprocessing**: Facial alignment and MTCNN bounding-box tracking with adaptive face crop margins and cinematic frame extraction.
-- **Signals Analyzed**: Sub-surface skin micro-texture (Laplacian variance), boundary blending gradients, facial landmark stability across temporal strides.
-- **Performance**: High sensitivity on FaceForensics++ benchmarks and synthetic AI films (`Oneiric`) with zero false positives on authentic mobile recordings.
-
-### 2. 🎙️ Synthetic Voice Clone Analyzer
-- **Backbone**: Biometric Acoustic Pitch & Vocoder Phase Analyzer.
-- **Signals Analyzed**: Fundamental frequency ($F_0$) standard deviation, micro-jitter & shimmer, vocoder phase quantization (spectral flatness), high-frequency roll-off (<2500 Hz), and 13-channel MFCC delta dynamics.
-- **Output**: Synthetic probability + auto-generated acoustic Mel-spectrogram heatmaps.
-
-### 3. 📧 Phishing Email & Pretexting Engine
-- **Backbone**: Hybrid `DistilBERT` sequence classification + RFC 5322 header heuristic engine.
-- **Signals Analyzed**: Free email domain masking, SPF/DKIM validation failures, urgency keyword heuristics (`suspended`, `verify`, `action required`), and malicious attachment vectors.
-- **Explainability**: Integrated **SHAP (SHapley Additive exPlanations)** attributing word-level impact scores to suspicious tokens.
-
-### 4. 🌐 Malicious URL Classifier
-- **Backbone**: High-performance Random Forest classifier trained on 100,000+ samples (PhishTank + Alexa Top 1M) with **99.66% accuracy**.
-- **Features Extracted**: Shannon entropy across hostname/path, IP address presence, brand typosquatting, subdomain depth, high-risk TLD filtering (`.xyz`, `.top`, `.tk`), and `@` destination obscuration.
-
-### 5. 🛡️ Network Intrusion Detection (IDS)
-- **Backbone**: PyTorch Deep Bottleneck Autoencoder ($7 \to 16 \to 8 \to 4 \to 8 \to 16 \to 7$).
-- **Methodology**: Unsupervised reconstruction error (Mean Squared Error). Trained on normal flow baseline distributions; anomalous patterns (DDoS, SYN floods, exfiltration bursts) exhibit high reconstruction loss.
-
-### 6. ⚡ HTCS Threat Fusion Engine
-- **Methodology**: Probabilistic Bayesian weighted risk aggregation:
-  $$\text{Risk Score} = \frac{\sum_{i} w_i \cdot r_i}{\sum_i w_i} \times 100$$
-- **Weights**: Network Anomaly (0.35), Deepfake Video (0.20), Synthetic Voice (0.15), Malicious URL (0.15), Phishing Email (0.15).
-- **Triage Tiers**: Categorizes combined threat into `Safe`, `Low`, `Medium`, `High`, or `Critical` with correlated incident alert summaries.
+| Vector | Model / Backbone | Target Signals & Methodology | Benchmark / Accuracy |
+|---|---|---|---|
+| **🎭 Deepfake Video** | Google ViT-B/16 + EfficientNet-B4 Ensemble | Sub-surface facial micro-texture, boundary blending gradients, facial landmark stability | FaceForensics++ (400 videos) + 140k benchmark |
+| **🎙️ Voice Clone** | Biometric Acoustic Pitch & Vocoder Phase Analyzer | Fundamental frequency ($F_0$) variation, vocoder phase quantization (spectral flatness), high-frequency roll-off | ASVspoof 2021 + HiFi-GAN baseline |
+| **📧 Phishing Email** | DistilBERT + RFC Header Heuristics | Spoofed sender domains, SPF/DKIM verification, credential harvesting pretexting, SHAP interpretability | Enron + Phishing corpus |
+| **🌐 Malicious URL** | Random Forest Classifier + Heuristic Engine | Shannon entropy, typosquatting, suspicious TLDs (`.xyz`, `.top`), IP-host routing, destination obfuscation | **99.66% Acc** (PhishTank + Alexa 1M) |
+| **🛡️ Network IDS** | Deep PyTorch Autoencoder ($7 \to 16 \to 8 \to 4 \to 8 \to 16 \to 7$) | Unsupervised reconstruction error (MSE) on flow duration, packet rates, and volumetric byte distributions | CIC-IDS2017 baseline (500k flows) |
+| **⚡ Risk Fusion** | Bayesian Threat Aggregation | Dynamic weight-normalized multi-vector threat probability synthesis | Automated triage (`Critical`, `High`, `Low`) |
 
 ---
 
 ## ⚖️ Digital Forensics & Chain of Custody
 
-Every piece of evidence uploaded to deepSheild adheres to formal forensic standards:
-1. **Cryptographic Hashing**: Automatic SHA-256 computation upon file intake.
-2. **Immutable Audit Trails**: Every analyst action (`UPLOAD_EVIDENCE`, `RUN_DETECTION`, `TRIGGER_FUSION`, `RESOLVE_CASE`) creates a timestamped record in the `AuditLog` table.
-3. **Forensic Room UI**: Dedicated Chain of Custody dashboard displaying UTC timestamps, actor IDs, evidence IDs, and cryptographically verified hashes ready for incident reporting.
+deepSheild implements institutional-grade digital chain of custody for all ingested evidence:
+- **Cryptographic Hashing**: Instant SHA-256 digest calculated at upload time to guarantee non-repudiation.
+- **Immutable Audit Logging**: Every system action (`UPLOAD_EVIDENCE`, `RUN_DETECTION`, `TRIGGER_FUSION`, `CASE_CREATE`) generates a permanent row in the `AuditLog` table.
+- **Chain of Custody UI**: Visual audit trail tracking analyst ID, action type, target ID, and UTC timestamps formatted for forensic admissibility.
 
 ---
 
 ## 💻 Tech Stack
 
-- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Lucide Icons, Axios.
-- **Backend**: FastAPI, Python 3.11, Pydantic v2, SQLAlchemy 2.0.
-- **Machine Learning**: PyTorch, Torchvision, Transformers (HuggingFace), Scikit-Learn, Librosa, MTCNN, OpenCV, SHAP.
-- **Distributed Tasks & Data**: PostgreSQL 15, Redis 7, Celery 5.4.
-- **DevOps**: Docker, Docker Compose, Git.
+- **Frontend**: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, Lucide Icons, Axios.
+- **Backend & ML**: FastAPI, Python 3.11, Pydantic v2, SQLAlchemy 2.0, PyTorch, Torchvision, Transformers (HuggingFace), Scikit-Learn, Librosa, MTCNN, OpenCV, SHAP.
+- **Storage & Infrastructure**: PostgreSQL 15, Redis 7, Celery 5.4, Docker, Docker Compose.
 
 ---
 
 ## 🚀 Quick Start Guide
 
-### Option 1: One-Command Docker Setup (Recommended)
+### Option 1: Multi-Container Docker Deployment (Recommended)
 
 1. **Clone the repository**:
    ```bash
@@ -137,24 +111,24 @@ Every piece of evidence uploaded to deepSheild adheres to formal forensic standa
    cd deepshield
    ```
 
-2. **Launch all containers**:
+2. **Launch services with Docker Compose**:
    ```bash
    docker-compose up -d --build
    ```
 
-3. **Access services**:
-   - 🖥️ **SOC Command Dashboard**: [`http://localhost:3000`](http://localhost:3000)
-   - 📖 **Interactive Swagger Docs**: [`http://localhost:8000/docs`](http://localhost:8000/docs)
+3. **Open the platform**:
+   - 🖥️ **SOC Analyst Dashboard**: [`http://localhost:3000`](http://localhost:3000)
+   - 📖 **Interactive Swagger API Docs**: [`http://localhost:8000/docs`](http://localhost:8000/docs)
    - ⚡ **API Gateway**: [`http://localhost:8000`](http://localhost:8000)
 
 ---
 
-### Option 2: Local Development Setup (Without Docker)
+### Option 2: Local Development Setup (Manual)
 
 <details>
-<summary>Click to view manual step-by-step setup</summary>
+<summary>Click to view manual setup instructions</summary>
 
-#### Backend:
+#### 1. Backend Service:
 ```bash
 cd backend
 python -m venv venv
@@ -167,7 +141,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-#### Frontend:
+#### 2. Frontend Web Application:
 ```bash
 cd frontend
 npm install
@@ -179,7 +153,7 @@ npm run dev
 
 ## 🔑 Default Credentials
 
-The platform seeds a default administrative analyst account on first boot:
+A default administrator analyst account is automatically seeded on first launch:
 
 | Field | Value |
 |---|---|
@@ -193,16 +167,16 @@ The platform seeds a default administrative analyst account on first boot:
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `POST` | `/api/v1/auth/login` | OAuth2 password bearer token issuance |
-| `GET` | `/api/v1/cases/stats/overview` | Live database SOC threat telemetry |
-| `POST` | `/api/v1/cases` | Open new incident investigation case |
-| `POST` | `/api/v1/deepfake/upload` | Ingest video and execute ViT + EfficientNet inference |
-| `POST` | `/api/v1/voice/upload` | Ingest audio and execute biometric vocoder analysis |
-| `POST` | `/api/v1/url/scan` | Lexical & structural heuristic/RF URL scanner |
-| `POST` | `/api/v1/email/analyze` | DistilBERT NLP + RFC header analysis |
-| `POST` | `/api/v1/network/analyze` | Autoencoder intrusion anomaly reconstruction |
-| `POST` | `/api/v1/fusion/aggregate/{id}` | Compute holistic Bayesian risk score for case |
-| `GET` | `/api/v1/forensics/case/{id}/chain-of-custody` | Fetch cryptographic audit trail and evidence hashes |
+| `POST` | `/api/v1/auth/login` | Authenticates analyst and issues OAuth2 JWT bearer token |
+| `GET` | `/api/v1/cases/stats/overview` | Retrieves live database SOC threat telemetry and scan metrics |
+| `POST` | `/api/v1/cases` | Creates a new security investigation case |
+| `POST` | `/api/v1/deepfake/upload` | Ingests video file and runs ViT + EfficientNet frame inference |
+| `POST` | `/api/v1/voice/upload` | Ingests audio file and runs biometric vocoder pitch analysis |
+| `POST` | `/api/v1/url/scan` | Analyzes URL using Random Forest lexical model and heuristic rules |
+| `POST` | `/api/v1/email/analyze` | Scans email text & headers via DistilBERT NLP and RFC checks |
+| `POST` | `/api/v1/network/analyze` | Evaluates network flow telemetry using PyTorch Deep Autoencoder |
+| `POST` | `/api/v1/fusion/aggregate/{id}` | Calculates holistic case threat risk score across all evidence |
+| `GET` | `/api/v1/forensics/case/{id}/chain-of-custody` | Returns cryptographic audit trail and evidence SHA-256 hashes |
 
 ---
 
@@ -224,11 +198,11 @@ deepSheild/
 │   │   │   └── fusion/      # Bayesian threat weighting pipeline
 │   │   └── worker/          # Celery background workers and task definitions
 │   ├── Dockerfile           # Optimized Python 3.11 container build
-│   └── requirements.txt     # Locked production dependencies
+│   └── requirements.txt     # Production dependencies
 ├── frontend/
 │   ├── src/
-│   │   ├── app/             # Next.js 16 App Router pages (Dashboard, Cases, Forensics, Login)
-│   │   ├── components/ui/   # Reusable accessible UI components
+│   │   ├── app/             # Next.js 16 App Router (Dashboard, Cases, Forensics, Login)
+│   │   ├── components/ui/   # Accessible UI components (Tailwind v4)
 │   │   └── lib/             # AuthContext, Axios 401 interceptor, utility helpers
 │   ├── Dockerfile.dev       # Development container definition
 │   └── package.json         # React 19, Tailwind CSS v4, Lucide dependencies
